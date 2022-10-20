@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_tutorial/screens/sandbox.dart';
 import 'screens/home.dart';
+// import 'screens/sandbox.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Sandbox(),
+      home: const Home(),
     );
   }
 }
