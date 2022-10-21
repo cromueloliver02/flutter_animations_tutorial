@@ -22,7 +22,7 @@ class _TripListState extends State<TripList> {
     });
   }
 
-  void _addTrips() {
+  void _addTrips() async {
     // get data from db
     List<Trip> trips = [
       Trip(
@@ -52,8 +52,10 @@ class _TripListState extends State<TripList> {
     ];
 
     for (var trip in trips) {
-      _tripTiles.add(_buildTile(trip));
-      _listKey.currentState!.insertItem(_tripTiles.length - 1);
+      await Future.delayed(const Duration(milliseconds: 100), () {
+        _tripTiles.add(_buildTile(trip));
+        _listKey.currentState!.insertItem(_tripTiles.length - 1);
+      });
     }
   }
 
