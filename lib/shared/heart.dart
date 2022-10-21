@@ -10,13 +10,14 @@ class Heart extends StatefulWidget {
 class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<Color?> _colorAnimation;
+  late final Animation<double> _sizeAnimation;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 300),
     );
 
     _colorAnimation = ColorTween(
@@ -24,12 +25,24 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
       end: Colors.red,
     ).animate(_controller);
 
+    _sizeAnimation = TweenSequence(<TweenSequenceItem<double>>[
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 30, end: 35),
+        weight: 50,
+      ),
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 35, end: 30),
+        weight: 50,
+      ),
+    ]).animate(_controller);
+
     // _controller.forward();
 
-    _controller.addListener(() {
-      debugPrint('_controller.value ${_controller.value}');
-      //   debugPrint('_colorAnimation.value ${_colorAnimation.value}');
-    });
+    // _controller.addListener(() {
+    //   debugPrint('_controller.value ${_controller.value}');
+    //   debugPrint('_colorAnimation.value ${_colorAnimation.value}');
+    //   debugPrint('_sizeAnimation.value ${_sizeAnimation.value}');
+    // });
 
     // _controller.addStatusListener((status) {
     //   debugPrint('status $status');
@@ -59,7 +72,7 @@ class _HeartState extends State<Heart> with SingleTickerProviderStateMixin {
         builder: (ctx, child) => Icon(
           Icons.favorite,
           color: _colorAnimation.value,
-          size: 30,
+          size: _sizeAnimation.value,
         ),
       ),
     );
