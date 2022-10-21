@@ -12,6 +12,7 @@ class ScreenTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return TweenAnimationBuilder(
       duration: const Duration(milliseconds: 500),
+      curve: Curves.easeIn,
       tween: Tween<double>(begin: 0, end: 1),
       builder: (ctx, value, child) => Padding(
         padding: EdgeInsets.only(top: value * 20),
